@@ -35,8 +35,11 @@ router.get('/cat-shelter/:catId', (req, res) => {
     res.render('catShelter');
 });
 router.get('/edit-cat/:catId', (req, res) => {
-    const allBreed = catManager.getAllBreeds();
     const cat = catManager.getCatById(req.params.catId);
+    if (!cat) {
+        return res.redirect('/404');
+    }
+    const allBreed = catManager.getAllBreeds();
     console.log(cat);
     res.render('editCat', ({ cat }, { allBreed }));
 });

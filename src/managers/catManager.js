@@ -38,7 +38,13 @@ const breedArr =
     ;
 
 exports.getAllBreeds = () => breedArr.slice();
-exports.getAll = () => cats.slice();
+exports.getAll = (search) => {
+    let result = cats.slice();
+    if (search) {
+        result = cats.filter(x => x.name.toLowerCase().includes(search.toLowerCase()));
+    }
+    return result;
+};
 exports.getCatById = (catId) => {
     const found = cats.find((x) => x.id === catId);
     return found;
