@@ -34,7 +34,7 @@ const cats = [
     }
 ];
 const breedArr =
-    ["Bombay Cat", "Persian Cat", "Siam", "Angora"]
+    ["Bombay Cat", "Persian Cat", "Siam", "Angora", "unknown"]
     ;
 
 exports.getAllBreeds = () => breedArr.slice();
@@ -58,7 +58,7 @@ exports.addCat = (catData) => {
         id: uniqId(),
         ...catData
     };
-    console.log(newCat);
+
     cats.push(newCat);
 
 };

@@ -2,7 +2,8 @@ const router = require('express').Router();
 const catManager = require('../managers/catManager');
 
 router.get('/add-cat', (req, res) => {
-    const allBreed = catManager.getAllBreeds();
+    const allBreed = catManager.getAllBreeds().sort();
+
     console.log(allBreed);
     res.render('addCat', { allBreed });
 });
@@ -29,6 +30,12 @@ router.post('/add-breed', (req, res) => {
 
     catManager.addBreed(breed);
     res.render('addBreed');
+});
+router.get('/cat-shelter/:catId', (req, res) => {
+    res.render('catShelter');
+});
+router.get('/edit-cat/:catId', (req, res) => {
+    res.render('editCat');
 });
 
 module.exports = router;
