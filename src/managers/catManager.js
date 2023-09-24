@@ -39,7 +39,10 @@ const breedArr =
 
 exports.getAllBreeds = () => breedArr.slice();
 exports.getAll = () => cats.slice();
-exports.getCatById = (catId) => cats.find((x) => x.id === catId);
+exports.getCatById = (catId) => {
+    const found = cats.find((x) => x.id === catId);
+    return found;
+};
 exports.addBreed = ({ breed }) => {
 
     if (breed === '') {

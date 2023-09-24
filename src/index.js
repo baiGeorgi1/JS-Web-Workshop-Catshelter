@@ -16,10 +16,9 @@ hbsConfigurator(app);
 app.use(homeController);
 app.use('/cats', catController);
 
-// app.get('*', (req, res) => {
-//     res.status(404)
-//         .send('404 Page not found!');
-// });
+app.get('*', (req, res) => {
+    res.redirect('404');
+});
 
 app.listen(PORT, () => console.log(`Server is listening on ${PORT}...`));
 
