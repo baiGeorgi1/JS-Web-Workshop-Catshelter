@@ -1,23 +1,18 @@
 const router = require('express').Router();
 const catManager = require('../managers/catManager');
-const uniq = require('uniqid');
 
 router.get('/add-cat', (req, res) => {
-    res.render('addCat');
+    const allBreed = catManager.getAllBreeds();
+    console.log(allBreed);
+    res.render('addCat', { allBreed });
 });
 router.post('/add-cat', (req, res) => {
     console.log(req.body);
-
     const { name,
         description,
         image,
         breed } = req.body;
-    console.log({
-        name,
-        description,
-        image,
-        breed
-    });
+
     catManager.addCat({
         name,
         description,

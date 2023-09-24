@@ -1,4 +1,5 @@
 const uniqId = require('uniqid');
+
 const cats = [
     {
         id: "1234",
@@ -32,8 +33,11 @@ const cats = [
         breed: "Persian Cat"
     }
 ];
-const breedArr = ["Bombay Cat", "Persian Cat", "Siam", "Angora"];
+const breedArr =
+    ["Bombay Cat", "Persian Cat", "Siam", "Angora"]
+    ;
 
+exports.getAllBreeds = () => breedArr.slice();
 exports.getAll = () => cats.slice();
 exports.addBreed = ({ breed }) => {
 
@@ -51,9 +55,10 @@ exports.addBreed = ({ breed }) => {
 };
 exports.addCat = (catData) => {
     const newCat = {
-        id: uniqId,
+        id: uniqId(),
         ...catData
     };
+    console.log(newCat);
     cats.push(newCat);
-    console.log(catData);
+
 };
