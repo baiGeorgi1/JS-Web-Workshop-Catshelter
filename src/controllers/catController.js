@@ -35,7 +35,8 @@ router.get('/cat-shelter/:catId', (req, res) => {
     res.render('catShelter');
 });
 router.get('/edit-cat/:catId', (req, res) => {
-    res.render('editCat');
+    const cat = catManager.getCatById(req.params.catId);
+    res.render('editCat', { cat });
 });
 
 module.exports = router;
