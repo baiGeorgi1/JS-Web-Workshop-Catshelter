@@ -1,8 +1,12 @@
 <section class="cats">
   <ul>
+    {{#if allCats}}
     {{#each allCats}}
       {{> catTemplate}}
     {{/each}}
+    {{else}}
+      <h2>No Cats!</h2>
+    {{/if}}
 
   </ul>
 </section>

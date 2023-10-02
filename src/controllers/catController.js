@@ -4,16 +4,13 @@ const catManager = require('../managers/catManager');
 router.get('/add-cat', (req, res) => {
     const allBreed = catManager.getAllBreeds().sort();
 
-    console.log(allBreed);
     res.render('addCat', { allBreed });
 });
 router.post('/add-cat', (req, res) => {
-    console.log(req.body);
     const { name,
         description,
         image,
         breed } = req.body;
-
     catManager.addCat({
         name,
         description,
@@ -27,21 +24,27 @@ router.get('/add-breed', (req, res) => {
 });
 router.post('/add-breed', (req, res) => {
     const breed = req.body;
-
     catManager.addBreed(breed);
     res.render('addBreed');
 });
 router.get('/cat-shelter/:catId', (req, res) => {
-    res.render('catShelter');
-});
-router.get('/edit-cat/:catId', (req, res) => {
     const cat = catManager.getCatById(req.params.catId);
+    res.render('catShelter', { cat });
+});
+router.get('/edit-cat/:catId', async (req, res) => {
+    const cat = await catManager.getCatById(req.params.catId);
+
     if (!cat) {
         return res.redirect('/404');
     }
     const allBreed = catManager.getAllBreeds();
-    console.log(cat);
-    res.render('editCat', ({ cat }, { allBreed }));
+    res.render('editCat', ({ cat, allBreed }));
+});
+router.post('/edit-cat/:catId', async (req, res) => {
+    const cat = catManager.getCatById(req.params.catId);
+    const { name, description, image, breed } = await req.body;
+    catManager.edit({ cat, name, description, image, breed });
+    res.redirect('/');
 });
 
 

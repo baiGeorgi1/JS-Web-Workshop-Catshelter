@@ -72,3 +72,14 @@ exports.addCat = (catData) => {
     cats.push(newCat);
 
 };
+exports.put = (cat) => {
+    //console.log(cat);
+};
+exports.edit = ({ cat, name, description, image, breed }) => {
+    cat.name = name;
+    cat.description = description;
+    cat.image = image;
+    cat.breed = breed;
+
+    return cat;
+};
